@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form action="/store/create" method="post">
+    <table border="1">
+        <tr>
+            <td>대표자명</td>
+            <td><input type="text" name="name" id="name" required/></td>
+        </tr>
+        <tr>
+            <td>스토어명</td>
+            <td><input type="text" name="storeName" id="storeName" required/></td>
+        </tr>
+        <tr>
+            <td>전화번호</td>
+            <td><input type="tel" name="phone" id="phone" required/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit"/>상품 생성</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

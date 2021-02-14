@@ -21,8 +21,10 @@
         function btn_click(str){
             if(str=="update"){
                 document.frm.action ='update'
+                document.frm.method ='GET'
             }
             if(str=="delete"){
+                document.frm.method ='POST'
                 document.frm.action ='delete'
             }
             document.frm.submit();
@@ -30,7 +32,11 @@
     </script>
    
     <h1>회원관리</h1>
-    <form name="frm" method="POST">
+    <input type="button" class="btn" onclick=" location.href='/user'" value="회원 관리"/>
+<input type="button" class="btn" onclick=" location.href='/product'" value="상품 관리"/>
+<input type="button" class="btn" onclick=" location.href='/store'" value="입점 업체 관리"/>
+    <form name="frm">
+        <a href="/user/create">글 생성</a>
         <input type="button" onclick="btn_click('update')" value="UPDATE">
         <input type="button" onclick="btn_click('delete')" value="DELETE">
         <table border="1">

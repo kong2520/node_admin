@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form action="/store/update" method="post">
+    <table border="1">
+        <input type="hidden" name="store_id" value="<%=row.store_id%>"/>
+        <tr>
+            <td>대표자명</td>
+            <td><input type="text" name="name" id="name" value="<%=row.name%>" required/></td>
+        </tr>
+        <tr>
+            <td>상점명</td>
+            <td><input type="text" name="storeName" id="storeName" value="<%=row.storeName%>" required/></td>
+        </tr>
+        <tr>
+            <td>전화번호</td>
+            <td><input type="tel" name="phone" id="phone" value="<%=row.phone%>" required/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit"/>입점업체정보수정</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

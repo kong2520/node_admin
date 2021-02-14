@@ -9,11 +9,13 @@ app.use(bodyParser.urlencoded({ extended: false}))
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var productRouter = require('./routes/product');
+var storeRouter = require('./routes/store');
 
 // use routes
 app.use("/", indexRouter);
 app.use('/user',userRouter);
 app.use('/product',productRouter);
+app.use('/store',storeRouter);
 
 // veiw
 app.set('views', __dirname + '/views');

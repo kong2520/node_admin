@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form action="/product/update" method="post">
+    <table border="1">
+        <input type="hidden" name="idx" value="<%=row.idx%>"/>
+        <tr>
+            <td>상품명</td>
+            <td><input type="text" name="name" id="name" value="<%=row.name%>" required/></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td><input type="text" name="content" id="content" value="<%=row.content%>" required/></td>
+        </tr>
+        <tr>
+            <td>수량</td>
+            <td><input type="number" name="quantity" id="quantity" value="<%=row.quantity%>" required/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit"/>상품정보수정</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

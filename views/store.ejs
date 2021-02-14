@@ -9,7 +9,7 @@
 <body>
     <script>
         function selectAll(selectAll)  {
-            const checkboxes = document.getElementsByName('idx');
+            const checkboxes = document.getElementsByName('store_id');
        
             checkboxes.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;
@@ -20,12 +20,12 @@
     <script>
         function btn_click(str){
             if(str=="update"){
-                document.frm.action ='product/update'
+                document.frm.action ='/store/update'
                 document.frm.method ='GET'
             }
             if(str=="delete"){
                 document.frm.method ='POST'
-                document.frm.action ='/product/delete'
+                document.frm.action ='/store/delete'
             }
             document.frm.submit();
         }
@@ -33,19 +33,19 @@
    
     <h1><%= title %></h1>
     <input type="button" class="btn" onclick=" location.href='/user'" value="회원 관리"/>
-<input type="button" class="btn" onclick=" location.href='/product'" value="상품 관리"/>
-<input type="button" class="btn" onclick=" location.href='/store'" value="입점 업체 관리"/>
+    <input type="button" class="btn" onclick=" location.href='/product'" value="상품 관리"/>
+    <input type="button" class="btn" onclick=" location.href='/store'" value="입점 업체 관리"/>
     <form name="frm">
-        <a href="/product/create">글 생성</a>
+        <a href="/store/create">글 생성</a>
         <input type="button" onclick="btn_click('update')" value="UPDATE">
         <input type="button" onclick="btn_click('delete')" value="DELETE">
         <table border="1">
             <tr>
                 <td><input type="checkbox" id="checkall" onclick='selectAll(this)'></td>
                 <td>번호</td>
-                <td>이름</td>
-                <td>내용</td>
-                <td>수량</td>
+                <td>대표자명</td>
+                <td>상점명</td>
+                <td>전화번호</td>
                 <td>생산 일자</td>
             </tr>
             <%
@@ -54,11 +54,11 @@
                 var data = rows[i];
             %>
             <tr>
-                <td><input type="checkbox" name="idx" value=<%=data.idx%>></td>
-                <td><%=data.idx%></td>
+                <td><input type="checkbox" name="store_id" value=<%=data.store_id%>></td>
+                <td><%=data.store_id%></td>
                 <td><%=data.name%></td>
-                <td><%=data.content%></td>
-                <td><%=data.quantity%></td>
+                <td><%=data.storeName%></td>
+                <td><%=data.phone%></td>
                 <td><%=data.created%></td>
             </tr>
             <%}%>

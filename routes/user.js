@@ -11,17 +11,67 @@ router.get('/', function(req, res, next) {
     })
 });
 
-// DELETE
-router.post('/delete',function(req,res,next){
-    var idx = req.body.idx
-    console.log(idx)
-    var sql = "delete from users where idx in (?)"
+// CREATE
+router.get('/create',function(req,res,next)
+{
+    res.render('user_create',{title : "회원 생성"})
+});
 
-    conn.query(sql,idx, function(err,result)
+router.post('/create', function(req,res,next){
+    var name = req.body.name;
+    var email = req.body.email;
+    var passwd = req.body.passwd;
+    var datas = [name,email,passwd]
+ 
+    var sql = "insert into users(name, email, passwd, created) values(?,?,?,now())";
+    conn.query(sql,datas, function (err, rows) {
+        if (err) console.error("err : " + err);
+        res.redirect('/user');
+    });
+});
+
+// UPDATE
+router.get('/update',function(req,res,next)
+{
+    var idx = req.query.idx;
+    console.log(idx);
+    var sql = "select idx, name, email, passwd from users where idx=?";
+    conn.query(sql,idx, function(err,row)
+    {
+        if(err) console.error(err);
+        res.render('user_update', {title:"회원정보 수정", row:row[0]});
+    });
+});
+
+router.post('/update',function(req,res,next){
+    var idx = req.body.idx
+    var name = req.body.name;
+    var email = req.body.email;
+    var passwd = req.body.passwd;
+    var data = [name,email,passwd,idx]
+    console.log(data);
+    var sql = "update users set name=?,email=?,passwd=? where idx=?";
+
+    conn.query(sql, data,function(err,result)
     {
         if(err) console.error(err);
         if(result.affectedRows > 0){
-            console.log(result.affectedRows)
+            console.log(result)
+            res.redirect('/user/');
+        }
+    });
+});
+
+// DELETE
+router.post('/delete',function(req,res,next){
+    var idx = req.body.idx
+    var sql = `delete from users where idx in (${idx})`
+
+    conn.query(sql, function(err,result)
+    {
+        if(err) console.error(err);
+        if(result.affectedRows > 0){
+            console.log(result)
             res.redirect('/user/');
         }
     });
